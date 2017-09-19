@@ -10,7 +10,7 @@
 
 Name:           certbot
 Version:        0.18.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A free, automated certificate authority client
 
 License:        ASL 2.0
@@ -22,9 +22,7 @@ Source11:       certbot-renew-systemd.timer
 Source12:       certbot-sysconfig-certbot
 Source13:       certbot-README.fedora
 
-%if 0%{?rhel}
 Patch0:         allow-old-setuptools.patch
-%endif
 
 BuildArch:      noarch
 
@@ -141,7 +139,10 @@ The python3 libraries to interface with certbot
 %endif
 
 %prep
-%autosetup -n %{name}-%{version} -p1
+%setup -q -n %{name}-%{version}
+%if 0%{?rhel}
+%patch0 -p1
+%endif
 
 
 %build
@@ -220,6 +221,9 @@ restorecon -R %{_sysconfdir}/letsencrypt || :
 %endif
 
 %changelog
+* Tue Sep 19 2017 Matt Dainty <matt@bodgit-n-scarper.com> - 0.18.1-2
+- Fix EPEL7 builds to work on Copr
+
 * Sun Sep 10 2017 Nick Bebout <nb@fedoraproject.org> - 0.18.1-1
 - Update to 0.18.1
 
