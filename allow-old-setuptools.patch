@@ -18,9 +18,9 @@ diff --git a/setup.py b/setup.py
 index b187e6f..cbf0ff8 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -45,9 +45,7 @@ install_requires = [
+@@ -47,9 +47,7 @@ install_requires = [
+     'PyOpenSSL',
      'pyrfc3339',
-     'python2-pythondialog>=3.2.2rc1',  # Debian squeeze support, cf. #280
      'pytz',
 -    # For pkg_resources. >=1.0 so pip resolves it to a version cryptography
 -    # will tolerate; see #2599:
